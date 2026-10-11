@@ -2,7 +2,7 @@
 
 17 графиков по одному исходному датасету. PNG — для просмотра; SVG — для масштабирования.
 
-[← К разбору проекта](README.md)
+[← К разбору проекта](README.md) · [Последние расчёты](generated/REPORT.md) · [Как пересобрать](REBUILD.md)
 
 ## Среднее и медиана
 
@@ -12,25 +12,25 @@
 
 Основной вариант.
 
-![Среднее и медиана](salary-means-bars.png)
+![Среднее и медиана](generated/salary-means-bars.png)
 
-[PNG](salary-means-bars.png) · [SVG](salary-means-bars.svg)
+[PNG](generated/salary-means-bars.png) · [SVG](generated/salary-means-bars.svg)
 
 ### Соединённые точки, dumbbell
 
 Удобно сравнить разрыв между двумя показателями.
 
-![Соединённые точки, dumbbell](salary-means-dumbbell.png)
+![Соединённые точки, dumbbell](generated/salary-means-dumbbell.png)
 
-[PNG](salary-means-dumbbell.png) · [SVG](salary-means-dumbbell.svg)
+[PNG](generated/salary-means-dumbbell.png) · [SVG](generated/salary-means-dumbbell.svg)
 
 ### Авторские карточки
 
 Подходят для короткого обзора; полосы имеют общую шкалу.
 
-![Авторские карточки](salary-means-cards.png)
+![Авторские карточки](generated/salary-means-cards.png)
 
-[PNG](salary-means-cards.png) · [SVG](salary-means-cards.svg)
+[PNG](generated/salary-means-cards.png) · [SVG](generated/salary-means-cards.svg)
 
 ## Разброс и центральный диапазон
 
@@ -40,25 +40,25 @@
 
 Основной вариант.
 
-![Разброс и центральный диапазон](salary-quartiles-interval.png)
+![Разброс и центральный диапазон](generated/salary-quartiles-interval.png)
 
-[PNG](salary-quartiles-interval.png) · [SVG](salary-quartiles-interval.svg)
+[PNG](generated/salary-quartiles-interval.png) · [SVG](generated/salary-quartiles-interval.svg)
 
 ### Boxplot по исходным строкам
 
 Показывает квартили, медиану и усы по правилу 1,5 IQR; выбросы скрыты только на рисунке.
 
-![Boxplot по исходным строкам](salary-quartiles-boxplot.png)
+![Boxplot по исходным строкам](generated/salary-quartiles-boxplot.png)
 
-[PNG](salary-quartiles-boxplot.png) · [SVG](salary-quartiles-boxplot.svg)
+[PNG](generated/salary-quartiles-boxplot.png) · [SVG](generated/salary-quartiles-boxplot.svg)
 
 ### Авторская нормировка относительно медианы
 
 Позволяет сравнить относительный разброс групп с разным уровнем зарплаты.
 
-![Авторская нормировка относительно медианы](salary-quartiles-normalized.png)
+![Авторская нормировка относительно медианы](generated/salary-quartiles-normalized.png)
 
-[PNG](salary-quartiles-normalized.png) · [SVG](salary-quartiles-normalized.svg)
+[PNG](generated/salary-quartiles-normalized.png) · [SVG](generated/salary-quartiles-normalized.svg)
 
 ## Сравнение городов
 
@@ -68,25 +68,25 @@
 
 Основной вариант.
 
-![Сравнение городов](salary-cities-bars.png)
+![Сравнение городов](generated/salary-cities-bars.png)
 
-[PNG](salary-cities-bars.png) · [SVG](salary-cities-bars.svg)
+[PNG](generated/salary-cities-bars.png) · [SVG](generated/salary-cities-bars.svg)
 
 ### Точки и ориентир, lollipop
 
 Сопоставляет города с медианой всей группы и показывает размер каждого сегмента.
 
-![Точки и ориентир, lollipop](salary-cities-lollipop.png)
+![Точки и ориентир, lollipop](generated/salary-cities-lollipop.png)
 
-[PNG](salary-cities-lollipop.png) · [SVG](salary-cities-lollipop.svg)
+[PNG](generated/salary-cities-lollipop.png) · [SVG](generated/salary-cities-lollipop.svg)
 
 ### Матрица город × опыт
 
 Добавляет второй разрез: медианы всех четырёх категорий опыта.
 
-![Матрица город × опыт](salary-cities-matrix.png)
+![Матрица город × опыт](generated/salary-cities-matrix.png)
 
-[PNG](salary-cities-matrix.png) · [SVG](salary-cities-matrix.svg)
+[PNG](generated/salary-cities-matrix.png) · [SVG](generated/salary-cities-matrix.svg)
 
 ## Форма распределений
 
@@ -96,41 +96,41 @@
 
 Основной вариант.
 
-![Форма распределений](salary-distribution-histogram.png)
+![Форма распределений](generated/salary-distribution-histogram.png)
 
-[PNG](salary-distribution-histogram.png) · [SVG](salary-distribution-histogram.svg)
+[PNG](generated/salary-distribution-histogram.png) · [SVG](generated/salary-distribution-histogram.svg)
 
 ### Полная гистограмма в логарифмах
 
 Включает весь хвост; интервалы равны в логарифмах.
 
-![Полная гистограмма в логарифмах](salary-distribution-loghist.png)
+![Полная гистограмма в логарифмах](generated/salary-distribution-loghist.png)
 
-[PNG](salary-distribution-loghist.png) · [SVG](salary-distribution-loghist.svg)
+[PNG](generated/salary-distribution-loghist.png) · [SVG](generated/salary-distribution-loghist.svg)
 
 ### Накопленные распределения, ECDF
 
 Отвечают на вопрос, какая доля вакансий ниже выбранного порога.
 
-![Накопленные распределения, ECDF](salary-distribution-ecdf.png)
+![Накопленные распределения, ECDF](generated/salary-distribution-ecdf.png)
 
-[PNG](salary-distribution-ecdf.png) · [SVG](salary-distribution-ecdf.svg)
+[PNG](generated/salary-distribution-ecdf.png) · [SVG](generated/salary-distribution-ecdf.svg)
 
 ### Violin plot в логарифмах
 
 Сравнивает сглаженную форму распределений по всем наблюдениям.
 
-![Violin plot в логарифмах](salary-distribution-violin.png)
+![Violin plot в логарифмах](generated/salary-distribution-violin.png)
 
-[PNG](salary-distribution-violin.png) · [SVG](salary-distribution-violin.svg)
+[PNG](generated/salary-distribution-violin.png) · [SVG](generated/salary-distribution-violin.svg)
 
 ### Авторские профили плотности
 
 Выносят каждую группу на отдельную полосу; высота нормирована внутри группы.
 
-![Авторские профили плотности](salary-distribution-ridgeline.png)
+![Авторские профили плотности](generated/salary-distribution-ridgeline.png)
 
-[PNG](salary-distribution-ridgeline.png) · [SVG](salary-distribution-ridgeline.svg)
+[PNG](generated/salary-distribution-ridgeline.png) · [SVG](generated/salary-distribution-ridgeline.svg)
 
 ## Полнота данных
 
@@ -140,23 +140,23 @@
 
 Основной вариант.
 
-![Полнота данных](salary-quality-missing.png)
+![Полнота данных](generated/salary-quality-missing.png)
 
-[PNG](salary-quality-missing.png) · [SVG](salary-quality-missing.svg)
+[PNG](generated/salary-quality-missing.png) · [SVG](generated/salary-quality-missing.svg)
 
 ### Точки: доля пропусков
 
 Выделяют только отсутствующие зарплаты на общей шкале 0–100%.
 
-![Точки: доля пропусков](salary-quality-dots.png)
+![Точки: доля пропусков](generated/salary-quality-dots.png)
 
-[PNG](salary-quality-dots.png) · [SVG](salary-quality-dots.svg)
+[PNG](generated/salary-quality-dots.png) · [SVG](generated/salary-quality-dots.svg)
 
 ### Авторские карточки полноты
 
 Соединяют процент пропусков, их число и объём доступных данных.
 
-![Авторские карточки полноты](salary-quality-cards.png)
+![Авторские карточки полноты](generated/salary-quality-cards.png)
 
-[PNG](salary-quality-cards.png) · [SVG](salary-quality-cards.svg)
+[PNG](generated/salary-quality-cards.png) · [SVG](generated/salary-quality-cards.svg)
 

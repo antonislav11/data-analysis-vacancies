@@ -6,6 +6,7 @@
 from pathlib import Path
 import argparse
 import hashlib
+import gzip
 import json
 import numpy as np
 import pandas as pd
@@ -29,6 +30,8 @@ def read_data(path):
         raise ValueError(f"Нет столбцов: {sorted(required - set(df.columns))}")
     if not df.vacancy_id.is_unique:
         raise ValueError("Идентификаторы вакансий повторяются")
+    if df.vacancy_id.isna().any() or df.city.isna().any():
+        raise ValueError("Идентификаторы и города должны быть заполнены")
     unknown = set(df.experience.dropna()) - set(ORDER)
     if unknown or df.experience.isna().any():
         raise ValueError(f"Неизвестные или пустые категории опыта: {unknown}")
@@ -75,7 +78,7 @@ def clean(ax, grid="x"):
 def save(fig, root, name, note):
     fig.text(.06, .035, note, fontsize=9, color=GREY, va="bottom")
     fig.savefig(root / f"{name}.png", dpi=160, facecolor="white")
-    fig.savefig(root / f"{name}.svg", facecolor="white")
+    fig.savefig(root / f"{name}.svg", facecolor="white", metadata={"Date": None})
     plt.close(fig)
 
 
@@ -83,19 +86,22 @@ def draw_gallery(df, summary, root):
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11,
                          "text.color": INK, "axes.labelcolor": INK,
                          "xtick.color": GREY, "ytick.color": INK,
-                         "svg.fonttype": "none"})
+                         "svg.fonttype": "none", "svg.hashsalt": "salary-portfolio"})
     mean, med = summary.mean_rub.to_numpy()/1000, summary.median_rub.to_numpy()/1000
     q1, q3 = summary.q25_rub.to_numpy()/1000, summary.q75_rub.to_numpy()/1000
     y = np.arange(4)
+    known_count = int(df.salary.notna().sum())
+    known_note = f"{known_count:,} вакансий с зарплатой. Значения округлены только в подписях.".replace(",", " ")
+    mean_limit = max(1000, float(max(mean.max(), med.max())) * 1.12)
     fig, ax = canvas("Среднее и медиана", "Группированные столбцы · одинаковая шкала для двух показателей")
     ax.barh(y+.17, mean, height=.28, color=GREY, label="Среднее")
     ax.barh(y-.17, med, height=.28, color=BLUE, label="Медиана")
     for j in y:
         ax.text(mean[j]+14, j+.17, f"{mean[j]:.0f}", va="center", fontsize=10)
         ax.text(med[j]+14, j-.17, f"{med[j]:.0f}", va="center", fontsize=10, color=BLUE)
-    ax.set(yticks=y, yticklabels=SHORT, xlabel="тыс. ₽", xlim=(0,1100))
+    ax.set(yticks=y, yticklabels=SHORT, xlabel="тыс. ₽", xlim=(0,mean_limit))
     ax.invert_yaxis(); clean(ax); ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0,1.12), ncol=2)
-    save(fig, root, "salary-means-bars", "74 410 вакансий с зарплатой. Значения округлены только в подписях.")
+    save(fig, root, "salary-means-bars", known_note)
 
     fig, ax = canvas("Разрыв между средним и медианой", "Dumbbell plot · соединённые точки показывают разницу")
     ax.hlines(y, med, mean, color="#c9c9c9", lw=4)
@@ -103,7 +109,7 @@ def draw_gallery(df, summary, root):
     ax.scatter(med,y,s=75,color=BLUE,label="Медиана",zorder=3)
     for j in y:
         ax.text((mean[j]+med[j])/2,j-.14,f"× {mean[j]/med[j]:.2f}",ha="center",fontsize=11)
-    ax.set(yticks=y, yticklabels=SHORT, xlabel="тыс. ₽", xlim=(0,1050), ylim=(3.55,-.6))
+    ax.set(yticks=y, yticklabels=SHORT, xlabel="тыс. ₽", xlim=(0,mean_limit), ylim=(3.55,-.6))
     clean(ax); ax.legend(frameon=False,loc="upper left",bbox_to_anchor=(0,1.12),ncol=2)
     save(fig,root,"salary-means-dumbbell","Коэффициент над линией — среднее / медиана, а не темп роста зарплаты.")
 
@@ -117,9 +123,9 @@ def draw_gallery(df, summary, root):
         ax.text(x+.03,yy+.14,f"Среднее {mean[j]:.0f} тыс. ₽",fontsize=11,color=GREY)
         for k,(value,color) in enumerate([(mean[j],GREY),(med[j],BLUE)]):
             ax.plot([x+.03,x+.40],[yy+.07-k*.045]*2,color=LIGHT,lw=7,solid_capstyle="butt")
-            ax.plot([x+.03,x+.03+.37*value/1000],[yy+.07-k*.045]*2,color=color,lw=7,solid_capstyle="butt")
+            ax.plot([x+.03,x+.03+.37*value/mean_limit],[yy+.07-k*.045]*2,color=color,lw=7,solid_capstyle="butt")
         ax.text(x+.03,yy-.018,f"Разница {mean[j]-med[j]:.0f} тыс. ₽  ·  × {mean[j]/med[j]:.2f}",fontsize=9)
-    save(fig,root,"salary-means-cards","Длина полос во всех карточках рассчитана по одной шкале: 0–1 000 тыс. ₽.")
+    save(fig,root,"salary-means-cards",f"Длина полос во всех карточках рассчитана по одной шкале: 0–{mean_limit:,.0f} тыс. ₽.".replace(",", " "))
 
     fig,ax=canvas("Центральные 50% зарплат", "Интервальная диаграмма · от 25-го до 75-го перцентиля")
     ax.hlines(y,q1,q3,color=BLUE,lw=9)
@@ -128,7 +134,7 @@ def draw_gallery(df, summary, root):
         ax.text(q1[j]-7,j,f"{q1[j]:g}",ha="right",va="center",fontsize=10)
         ax.text(q3[j]+7,j,f"{q3[j]:g}",ha="left",va="center",fontsize=10)
         ax.text(med[j],j-.22,f"медиана {med[j]:g}",ha="center",fontsize=10)
-    ax.set(yticks=y,yticklabels=SHORT,xlabel="тыс. ₽",xlim=(0,470),ylim=(3.6,-.65));clean(ax)
+    ax.set(yticks=y,yticklabels=SHORT,xlabel="тыс. ₽",xlim=(0,max(470,float(q3.max())*1.18)),ylim=(3.6,-.65));clean(ax)
     save(fig,root,"salary-quartiles-interval","Отрезки — межквартильные диапазоны, а не доверительные интервалы.")
 
     arrays=[df.loc[df.experience.eq(g),"salary"].dropna().to_numpy()/1000 for g in ORDER]
@@ -136,7 +142,7 @@ def draw_gallery(df, summary, root):
     box=ax.boxplot(arrays,orientation="horizontal",patch_artist=True,showfliers=False,whis=1.5,
                    tick_labels=SHORT,medianprops={"color":INK,"linewidth":2},widths=.5)
     for patch,color in zip(box["boxes"],COLORS): patch.set(facecolor=color,alpha=.35)
-    ax.set(xlabel="тыс. ₽",xlim=(0,700));ax.invert_yaxis();clean(ax)
+    ax.set(xlabel="тыс. ₽",xlim=(0,max(700,max(float(np.quantile(a,.75)+1.5*(np.quantile(a,.75)-np.quantile(a,.25))) for a in arrays))));ax.invert_yaxis();clean(ax)
     save(fig,root,"salary-quartiles-boxplot","Ящик — Q1–Q3; усы — крайние наблюдения в пределах 1,5 IQR. Все строки остаются в расчётах.")
 
     fig,ax=canvas("Диапазон относительно медианы", "Авторская нормировка · медиана каждой группы принята за 100%")
@@ -144,22 +150,23 @@ def draw_gallery(df, summary, root):
     ax.hlines(y,100*q1/med,100*q3/med,color=BLUE,lw=12)
     ax.scatter(np.full(4,100),y,s=70,color=INK,zorder=3)
     for j in y: ax.text(100*q3[j]/med[j]+3,j,f"IQR / медиана: {100*(q3[j]-q1[j])/med[j]:.1f}%",va="center",fontsize=10)
-    ax.set(yticks=y,yticklabels=SHORT,xlabel="% от медианы своей группы",xlim=(40,250),ylim=(3.6,-.6));clean(ax)
+    ax.set(yticks=y,yticklabels=SHORT,xlabel="% от медианы своей группы",xlim=(min(40,float((100*q1/med).min())*.9),max(250,float((100*q3/med).max())*1.3)),ylim=(3.6,-.6));clean(ax)
     save(fig,root,"salary-quartiles-normalized","Для сравнения относительного разброса. Различия абсолютных зарплат здесь не показаны.")
 
     city=df.loc[df.experience.eq(ORDER[1])].groupby("city").salary.agg(["count","median"]).dropna().sort_values("median",ascending=False)
     labels=list(city.index); values=city["median"].to_numpy()/1000; cy=np.arange(len(city))
+    overall_city_median = med[1]
     fig,ax=canvas("Медианы зарплат по городам", "Столбчатая диаграмма · только вакансии с опытом 1–3 года")
     ax.barh(cy,values,color=BLUE,height=.6)
     for j,v in enumerate(values): ax.text(v+3,j,f"{v:g}",va="center",fontsize=11)
-    ax.set(yticks=cy,yticklabels=labels,xlabel="тыс. ₽",xlim=(0,200));ax.invert_yaxis();clean(ax)
+    ax.set(yticks=cy,yticklabels=labels,xlabel="тыс. ₽",xlim=(0,max(200,float(values.max())*1.2)));ax.invert_yaxis();clean(ax)
     save(fig,root,"salary-cities-bars","Различия городов также могут отражать состав вакансий. Период выгрузки не подтверждён.")
 
-    fig,ax=canvas("Города относительно общей медианы", "Lollipop plot · вертикальная линия — 150 тыс. ₽ для всей группы 1–3 года")
+    fig,ax=canvas("Города относительно общей медианы", f"Lollipop plot · вертикальная линия — {overall_city_median:g} тыс. ₽ для всей группы 1–3 года")
     ax.hlines(cy,0,values,color="#c9c9c9",lw=2);ax.scatter(values,cy,s=90,color=BLUE,zorder=3)
-    ax.axvline(150,color=INK,ls="--",lw=1)
+    ax.axvline(overall_city_median,color=INK,ls="--",lw=1)
     for j,v in enumerate(values): ax.text(v+3,j,f"{v:g}  ·  n={city['count'].iloc[j]:,}".replace(","," "),va="center",fontsize=10)
-    ax.set(yticks=cy,yticklabels=labels,xlabel="тыс. ₽",xlim=(0,230));ax.invert_yaxis();clean(ax)
+    ax.set(yticks=cy,yticklabels=labels,xlabel="тыс. ₽",xlim=(0,max(230,float(values.max())*1.4)));ax.invert_yaxis();clean(ax)
     save(fig,root,"salary-cities-lollipop","Число вакансий указано рядом с медианой. Сравнивается одна категория требуемого опыта.")
 
     matrix=df.pivot_table(index="city",columns="experience",values="salary",aggfunc="median").reindex(index=labels,columns=ORDER)/1000
@@ -229,7 +236,7 @@ def draw_gallery(df, summary, root):
     for j in y: ax.text(101,j,f"Нет данных: {missing.iloc[j]:.1f}%",va="center",fontsize=10)
     ax.set(yticks=y,yticklabels=SHORT,xlabel="% всех вакансий группы",xlim=(0,138));ax.invert_yaxis();clean(ax,None)
     ax.legend(frameon=False,loc="upper left",bbox_to_anchor=(0,1.12),ncol=2)
-    save(fig,root,"salary-quality-missing","100 000 исходных строк; 25 590 без зарплаты. Пропуски различаются между категориями опыта.")
+    save(fig,root,"salary-quality-missing",f"{len(df):,} исходных строк; {len(df)-known_count:,} без зарплаты. Пропуски различаются между категориями опыта.".replace(",", " "))
 
     fig,ax=canvas("Доля вакансий без зарплаты", "Dot plot · акцент на пропусках вместо заполненной части")
     ax.hlines(y,0,missing,color="#c9c9c9",lw=2)
@@ -255,7 +262,7 @@ def draw_gallery(df, summary, root):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("csv",type=Path)
+    parser.add_argument("csv",type=Path,nargs="?",default=Path(__file__).parent/"vacancies.csv.gz")
     parser.add_argument("--output",type=Path,default=Path(__file__).parent)
     args=parser.parse_args(); args.output.mkdir(parents=True,exist_ok=True)
     df=read_data(args.csv); summary=summarize(df)
@@ -273,7 +280,7 @@ def main():
     y=df.loc[df.experience.eq(ORDER[1]),"salary"].dropna()
     u=mannwhitneyu(x,y,alternative="greater",method="asymptotic")
     meta=dict(rows=len(df),salary_rows=int(df.salary.notna().sum()),missing_salary_rows=int(df.salary.isna().sum()),
-              inverted_ranges=int(df.inverted.sum()),sha256=hashlib.sha256(args.csv.read_bytes()).hexdigest(),
+              inverted_ranges=int(df.inverted.sum()),sha256=hashlib.sha256(gzip.decompress(args.csv.read_bytes()) if args.csv.suffix==".gz" else args.csv.read_bytes()).hexdigest(),
               mann_whitney=dict(U=float(u.statistic),p=float(u.pvalue),rank_biserial=float(2*u.statistic/(len(x)*len(y))-1)))
     (args.output/"analysis-checks.json").write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding="utf-8")
     draw_gallery(df,summary,args.output)

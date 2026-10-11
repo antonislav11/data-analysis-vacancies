@@ -2,6 +2,16 @@
 
 ## Зарплаты в учебном датасете вакансий
 
+### Сборка графиков из кода
+
+[![Состояние автоматической сборки](https://github.com/antonyakovlev11/data-analysis-vacancies/actions/workflows/rebuild-charts.yml/badge.svg)](https://github.com/antonyakovlev11/data-analysis-vacancies/actions/workflows/rebuild-charts.yml)
+
+**[Последние расчёты и графики →](generated/REPORT.md)** · [Как обновлять](REBUILD.md) · [Код сборки](build_portfolio.py)
+
+Графики пересчитываются после изменения исходных данных, параметров или Python-кода, а также по кнопке **Run workflow** во вкладке Actions. Сборка проверяет результаты и обновляет только папку `generated/`. Прежние иллюстрации, код, таблицы и описание исходной работы сохранены.
+
+Числа в авторском разборе ниже зафиксированы для исходного учебного набора. При изменении входных данных актуальные значения смотрите в отчёте последней сборки.
+
 Я сравнил зарплаты по требуемому опыту, проверил влияние редких высоких значений и показал, как меняется вывод при выборе среднего, медианы и диапазона.
 
 Для вакансий с опытом **1–3 года** медиана — **150 000 ₽**, центральные 50% значений — **110 000–217 500 ₽**. Это описание конкретного датасета: период выгрузки и его происхождение не подтверждены.
@@ -48,18 +58,18 @@ summary = valid.groupby("experience")["salary"].agg(
 
 Среднее выше медианы в 2,90–3,55 раза. Я использую медиану вместе с квартилями, чтобы описать типичное предложение; среднее оставляю для анализа влияния хвоста.
 
-![Среднее и медиана](salary-means-bars.png)
+![Среднее и медиана](generated/salary-means-bars.png)
 
 <details>
 <summary>Другие варианты этой иллюстрации</summary>
 
 **Соединённые точки, dumbbell.** Удобно сравнить разрыв между двумя показателями.
 
-![Соединённые точки, dumbbell](salary-means-dumbbell.png)
+![Соединённые точки, dumbbell](generated/salary-means-dumbbell.png)
 
 **Авторские карточки.** Подходят для короткого обзора; полосы имеют общую шкалу.
 
-![Авторские карточки](salary-means-cards.png)
+![Авторские карточки](generated/salary-means-cards.png)
 
 </details>
 
@@ -67,18 +77,18 @@ summary = valid.groupby("experience")["salary"].agg(
 
 Самый широкий абсолютный IQR — 165 тыс. ₽ в группе более 6 лет. Самый большой IQR относительно медианы — 71,7% в группе 1–3 года. Интервалы Q1–Q3 содержат центральные 50% наблюдений; это не доверительные интервалы.
 
-![Разброс и центральный диапазон](salary-quartiles-interval.png)
+![Разброс и центральный диапазон](generated/salary-quartiles-interval.png)
 
 <details>
 <summary>Другие варианты этой иллюстрации</summary>
 
 **Boxplot по исходным строкам.** Показывает квартили, медиану и усы по правилу 1,5 IQR; выбросы скрыты только на рисунке.
 
-![Boxplot по исходным строкам](salary-quartiles-boxplot.png)
+![Boxplot по исходным строкам](generated/salary-quartiles-boxplot.png)
 
 **Авторская нормировка относительно медианы.** Позволяет сравнить относительный разброс групп с разным уровнем зарплаты.
 
-![Авторская нормировка относительно медианы](salary-quartiles-normalized.png)
+![Авторская нормировка относительно медианы](generated/salary-quartiles-normalized.png)
 
 </details>
 
@@ -86,18 +96,18 @@ summary = valid.groupby("experience")["salary"].agg(
 
 В группе 1–3 года медиана меняется от 95 тыс. ₽ в Нижнем Новгороде до 167,5 тыс. ₽ в Москве. Категорию опыта я фиксирую, чтобы сравнение городов было точнее. Состав профессий и тип занятости всё ещё могут влиять на разницу.
 
-![Сравнение городов](salary-cities-bars.png)
+![Сравнение городов](generated/salary-cities-bars.png)
 
 <details>
 <summary>Другие варианты этой иллюстрации</summary>
 
 **Точки и ориентир, lollipop.** Сопоставляет города с медианой всей группы и показывает размер каждого сегмента.
 
-![Точки и ориентир, lollipop](salary-cities-lollipop.png)
+![Точки и ориентир, lollipop](generated/salary-cities-lollipop.png)
 
 **Матрица город × опыт.** Добавляет второй разрез: медианы всех четырёх категорий опыта.
 
-![Матрица город × опыт](salary-cities-matrix.png)
+![Матрица город × опыт](generated/salary-cities-matrix.png)
 
 </details>
 
@@ -105,26 +115,26 @@ summary = valid.groupby("experience")["salary"].agg(
 
 На линейной гистограмме показана часть до 1 млн ₽, но доли рассчитаны от всей группы, а значения за пределами подписаны. Остальные варианты охватывают все наблюдения. Я не восстанавливал распределения по сводным числам — графики построены из исходных строк.
 
-![Форма распределений](salary-distribution-histogram.png)
+![Форма распределений](generated/salary-distribution-histogram.png)
 
 <details>
 <summary>Другие варианты этой иллюстрации</summary>
 
 **Полная гистограмма в логарифмах.** Включает весь хвост; интервалы равны в логарифмах.
 
-![Полная гистограмма в логарифмах](salary-distribution-loghist.png)
+![Полная гистограмма в логарифмах](generated/salary-distribution-loghist.png)
 
 **Накопленные распределения, ECDF.** Отвечают на вопрос, какая доля вакансий ниже выбранного порога.
 
-![Накопленные распределения, ECDF](salary-distribution-ecdf.png)
+![Накопленные распределения, ECDF](generated/salary-distribution-ecdf.png)
 
 **Violin plot в логарифмах.** Сравнивает сглаженную форму распределений по всем наблюдениям.
 
-![Violin plot в логарифмах](salary-distribution-violin.png)
+![Violin plot в логарифмах](generated/salary-distribution-violin.png)
 
 **Авторские профили плотности.** Выносят каждую группу на отдельную полосу; высота нормирована внутри группы.
 
-![Авторские профили плотности](salary-distribution-ridgeline.png)
+![Авторские профили плотности](generated/salary-distribution-ridgeline.png)
 
 </details>
 
@@ -132,18 +142,18 @@ summary = valid.groupby("experience")["salary"].agg(
 
 Доля вакансий без зарплаты увеличивается от 5,2% в группе без опыта до 54,8% в группе более 6 лет. Сравниваемые зарплаты относятся только к записям, где зарплата указана. Это ограничение я учитываю при выводах. Данные: [data-quality.csv](data-quality.csv).
 
-![Полнота данных](salary-quality-missing.png)
+![Полнота данных](generated/salary-quality-missing.png)
 
 <details>
 <summary>Другие варианты этой иллюстрации</summary>
 
 **Точки: доля пропусков.** Выделяют только отсутствующие зарплаты на общей шкале 0–100%.
 
-![Точки: доля пропусков](salary-quality-dots.png)
+![Точки: доля пропусков](generated/salary-quality-dots.png)
 
 **Авторские карточки полноты.** Соединяют процент пропусков, их число и объём доступных данных.
 
-![Авторские карточки полноты](salary-quality-cards.png)
+![Авторские карточки полноты](generated/salary-quality-cards.png)
 
 </details>
 
@@ -155,7 +165,8 @@ summary = valid.groupby("experience")["salary"].agg(
 
 ```bash
 python -m pip install -r requirements.txt
-python salary_analysis.py vacancies.csv --output .
+python build_portfolio.py
+# Свой CSV: python build_portfolio.py /path/to/vacancies.csv
 ```
 
 - [salary_analysis.py](salary_analysis.py) — подготовка данных, расчёты и все 17 новых графиков.
@@ -165,7 +176,7 @@ python salary_analysis.py vacancies.csv --output .
 - [analysis-checks.json](analysis-checks.json) — проверенные численности и результат статистического сравнения.
 - [sensitivity-summary.csv](sensitivity-summary.csv) — сравнение основного расчёта, полных вилок, исключения обратных вилок и диагностического порога 1 млн ₽.
 
-Исходный CSV хранится локально и в репозиторий не включён. Для повторения полного анализа нужен файл с указанной схемой. Графики и сводные таблицы доступны без него.
+Исходный CSV включён в [vacancies.csv.gz](vacancies.csv.gz) без изменения строк, в сжатом виде. Python читает его напрямую; локальную выгрузку можно передать отдельным аргументом. Прежние сводные таблицы сохранены, пересчитанные находятся в `generated/`.
 
 ### Границы выводов
 
