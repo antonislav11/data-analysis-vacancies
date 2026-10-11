@@ -1,0 +1,12 @@
+{
+  "rows": 100000,
+  "salary_rows": 74410,
+  "missing_salary_rows": 25590,
+  "inverted_ranges": 987,
+  "sha256": "1de539f98acd186b911833fc92b7ba68e7cfff59728ccdd234c5939165382463",
+  "mann_whitney": {
+    "U": 361812706.5,
+    "p": 1.370095264529544e-77,
+    "rank_biserial": 0.09662466433056127
+  }
+}

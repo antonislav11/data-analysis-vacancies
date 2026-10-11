@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="777.6pt" height="504pt" viewBox="0 0 777.6 504" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 504 
+L 777.6 504 
+L 777.6 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 136.8576 261.49536 
+L 416.7936 261.49536 
+Q 424.25856 261.49536 424.25856 257.7456 
+L 424.25856 123.3792 
+Q 424.25856 119.62944 416.7936 119.62944 
+L 136.8576 119.62944 
+Q 129.39264 119.62944 129.39264 123.3792 
+L 129.39264 257.7456 
+Q 129.39264 261.49536 136.8576 261.49536 
+z
+" clip-path="url(#p6ac6ada05a)" style="fill: #ffffff; stroke: #cccccc; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 447.8976 261.49536 
+L 727.8336 261.49536 
+Q 735.29856 261.49536 735.29856 257.7456 
+L 735.29856 123.3792 
+Q 735.29856 119.62944 727.8336 119.62944 
+L 447.8976 119.62944 
+Q 440.43264 119.62944 440.43264 123.3792 
+L 440.43264 257.7456 
+Q 440.43264 261.49536 447.8976 261.49536 
+z
+" clip-path="url(#p6ac6ada05a)" style="fill: #ffffff; stroke: #cccccc; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 136.8576 417.73536 
+L 416.7936 417.73536 
+Q 424.25856 417.73536 424.25856 413.9856 
+L 424.25856 279.6192 
+Q 424.25856 275.86944 416.7936 275.86944 
+L 136.8576 275.86944 
+Q 129.39264 275.86944 129.39264 279.6192 
+L 129.39264 413.9856 
+Q 129.39264 417.73536 136.8576 417.73536 
+z
+" clip-path="url(#p6ac6ada05a)" style="fill: #ffffff; stroke: #cccccc; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 447.8976 417.73536 
+L 727.8336 417.73536 
+Q 735.29856 417.73536 735.29856 413.9856 
+L 735.29856 279.6192 
+Q 735.29856 275.86944 727.8336 275.86944 
+L 447.8976 275.86944 
+Q 440.43264 275.86944 440.43264 279.6192 
+L 440.43264 413.9856 
+Q 440.43264 417.73536 447.8976 417.73536 
+z
+" clip-path="url(#p6ac6ada05a)" style="fill: #ffffff; stroke: #cccccc; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 155.52 224.9352 
+L 385.6896 224.9352 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #ececec; stroke-width: 9"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 155.52 224.9352 
+L 167.485251 224.9352 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #141414; stroke-width: 9"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 466.56 224.9352 
+L 696.7296 224.9352 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #ececec; stroke-width: 9"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 466.56 224.9352 
+L 501.254216 224.9352 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #141414; stroke-width: 9"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 155.52 381.1752 
+L 385.6896 381.1752 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #ececec; stroke-width: 9"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 155.52 381.1752 
+L 236.192377 381.1752 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #141414; stroke-width: 9"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 466.56 381.1752 
+L 696.7296 381.1752 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #ececec; stroke-width: 9"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 466.56 381.1752 
+L 592.698658 381.1752 
+" clip-path="url(#p6ac6ada05a)" style="fill: none; stroke: #141414; stroke-width: 9"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="155.52" y="148.3776" transform="rotate(-0 155.52 148.3776)">Нет опыта</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="155.52" y="176.5008" transform="rotate(-0 155.52 176.5008)">Без зарплаты 5.2%</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="155.52" y="201.4992" transform="rotate(-0 155.52 201.4992)">778 из 14 966 строк</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2965a3" x="155.52" y="247.74624" transform="rotate(-0 155.52 247.74624)">С зарплатой: 14 188</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="466.56" y="148.3776" transform="rotate(-0 466.56 148.3776)">1–3 года</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="466.56" y="176.5008" transform="rotate(-0 466.56 176.5008)">Без зарплаты 15.1%</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="466.56" y="201.4992" transform="rotate(-0 466.56 201.4992)">6 023 из 39 958 строк</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2965a3" x="466.56" y="247.74624" transform="rotate(-0 466.56 247.74624)">С зарплатой: 33 935</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="155.52" y="304.6176" transform="rotate(-0 155.52 304.6176)">3–6 лет</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="155.52" y="332.7408" transform="rotate(-0 155.52 332.7408)">Без зарплаты 35.0%</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="155.52" y="357.7392" transform="rotate(-0 155.52 357.7392)">10 493 из 29 938 строк</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2965a3" x="155.52" y="403.98624" transform="rotate(-0 155.52 403.98624)">С зарплатой: 19 445</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="466.56" y="304.6176" transform="rotate(-0 466.56 304.6176)">Более 6 лет</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="466.56" y="332.7408" transform="rotate(-0 466.56 332.7408)">Без зарплаты 54.8%</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="466.56" y="357.7392" transform="rotate(-0 466.56 357.7392)">8 296 из 15 138 строк</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #2965a3" x="466.56" y="403.98624" transform="rotate(-0 466.56 403.98624)">С зарплатой: 6 842</text>
+   </g>
+  </g>
+  <g id="text_17">
+   <text style="font-weight: 700; font-size: 20px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #141414" x="46.656" y="46.09" transform="rotate(-0 46.656 46.09)">Полнота данных: доля и объём</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="46.656" y="70.597656" transform="rotate(-0 46.656 70.597656)">Авторская компоновка · карточки дополняют проценты числом строк</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #707070" x="46.656" y="484.197891" transform="rotate(-0 46.656 484.197891)">Шкала полос во всех карточках — 0–100%. Числа позволяют оценить объём доступных данных.</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6ac6ada05a">
+   <rect x="124.416" y="110.88" width="622.08" height="312.48"/>
+  </clipPath>
+ </defs>
+</svg>
