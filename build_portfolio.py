@@ -1,4 +1,4 @@
-"""Пересобрать галерею и проверить её, сохраняя прежние файлы проекта."""
+"""Построить графики зарплат и проверить результаты расчёта."""
 import argparse
 import hashlib
 import json
@@ -71,7 +71,7 @@ def main():
     }
     (args.output / "build-manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Проверено: {len(CHARTS)} графиков в PNG/SVG, 5 сводных CSV; прежние материалы сохранены.")
+    print(f"Проверено: {len(CHARTS)} графиков в PNG/SVG, 5 сводных CSV.")
 
 
 if __name__ == "__main__":
