@@ -1,4 +1,4 @@
-"""Reproduce portfolio summaries; original vacancy rows are unavailable."""
+"""Короткий пример расчётов по сводной таблице; полный анализ — salary_analysis.py."""
 import csv
 from pathlib import Path
 rows = list(csv.DictReader((Path(__file__).parent / 'salary-summary.csv').open(encoding='utf-8')))
