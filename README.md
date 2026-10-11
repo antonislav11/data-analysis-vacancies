@@ -6,14 +6,6 @@
 
 ## Зарплаты в учебном датасете вакансий
 
-### Сборка графиков из кода
-
-[![Состояние автоматической сборки](https://github.com/antonyakovlev11/data-analysis-vacancies/actions/workflows/rebuild-charts.yml/badge.svg)](https://github.com/antonyakovlev11/data-analysis-vacancies/actions/workflows/rebuild-charts.yml)
-
-**[Последние расчёты и графики →](generated/REPORT.md)** · [Как обновлять](REBUILD.md) · [Код сборки](build_portfolio.py)
-
-Графики строю из данных и Python-кода. После изменения данных, параметров или кода GitHub Actions запускает расчёт, проверяет результаты и публикует их в `generated/`. Для ручного запуска использую **Run workflow** во вкладке Actions.
-
 В разборе ниже использую исходный учебный набор. Результаты для текущих данных и параметров доступны в [отчёте расчёта](generated/REPORT.md).
 
 Я сравнил зарплаты по требуемому опыту, проверил влияние редких высоких значений и показал, как меняется вывод при выборе среднего, медианы и диапазона.
@@ -165,13 +157,7 @@ summary = valid.groupby("experience")["salary"].agg(
 
 Этот кейс показывает, как я выбираю метрику под вопрос, проверяю данные до интерпретации и объясняю результат через несколько визуальных форм. Редкие высокие значения требуют проверки валют, периода оплаты и источника; по одному признаку я не объявляю их ошибками.
 
-### Код и повторение
-
-```bash
-python -m pip install -r requirements.txt
-python build_portfolio.py
-# Свой CSV: python build_portfolio.py /path/to/vacancies.csv
-```
+### Код и данные
 
 - [salary_analysis.py](salary_analysis.py) — подготовка данных, расчёты и все 17 новых графиков.
 - [salary_queries.sql](salary_queries.sql) — примеры группировок и проверки пропусков в SQLite.
@@ -180,7 +166,7 @@ python build_portfolio.py
 - [analysis-checks.json](analysis-checks.json) — проверенные численности и результат статистического сравнения.
 - [sensitivity-summary.csv](sensitivity-summary.csv) — сравнение основного расчёта, полных вилок, исключения обратных вилок и диагностического порога 1 млн ₽.
 
-Для расчётов использую [vacancies.csv.gz](vacancies.csv.gz): Python читает сжатый CSV напрямую. Другую выгрузку можно передать отдельным аргументом. Результаты текущего расчёта находятся в `generated/`.
+Для расчётов использую [vacancies.csv.gz](vacancies.csv.gz): Python читает сжатый CSV напрямую. Сводные таблицы и графики находятся в `generated/`.
 
 ### Границы выводов
 
